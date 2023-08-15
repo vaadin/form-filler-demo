@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 @SpringBootApplication
-@Theme(value = "formfillerdemo")
+@Theme(value = "my-theme")
 public class Application implements AppShellConfigurator {
 
     public static void main(String[] args) {
