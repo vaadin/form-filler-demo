@@ -2,17 +2,14 @@ package com.example.application.views;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import com.example.application.data.OrderItem;
-import com.example.application.utils.DebugTool;
-import com.example.application.utils.ExtraInstructionsTool;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.vaadin.flow.ai.formfiller.FormFiller;
 import com.vaadin.flow.ai.formfiller.FormFillerResult;
 import com.vaadin.flow.ai.formfiller.services.ChatGPTService;
-import com.vaadin.flow.ai.formfiller.utils.ComponentUtils;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -24,7 +21,7 @@ import com.vaadin.flow.component.datetimepicker.DateTimePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.editor.Editor;
-import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
@@ -38,19 +35,16 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
 
-@PageTitle("Form Filler For Text")
-@Route(value = "text", layout = MainLayout.class)
-@RouteAlias(value = "", layout = MainLayout.class)
+@PageTitle("Form Filler Demo")
+@Route("")
 public class FormFillerTextDemo extends VerticalLayout {
 
-    FormLayout formLayout;
-
-    ExtraInstructionsTool extraInstructionsTool = new ExtraInstructionsTool();
+    private final FormLayout formLayout;
 
     public FormFillerTextDemo() {
         setPadding(true);
+
         formLayout = new FormLayout();
 
         TextField nameField = new TextField("Name");
@@ -65,7 +59,7 @@ public class FormFillerTextDemo extends VerticalLayout {
         phoneField.setId("phone");
         formLayout.add(phoneField);
 
-        IntegerField age = new IntegerField("age");
+        IntegerField age = new IntegerField("Age");
         age.setId("age");
         formLayout.add(age);
 
@@ -183,82 +177,67 @@ public class FormFillerTextDemo extends VerticalLayout {
         formLayout.setResponsiveSteps(
                 // Use one column by default
                 new FormLayout.ResponsiveStep("0", 1),
-                // Use two columns, if layout's width exceeds 500px
+                // Use two columns, if mainLayout's width exceeds 500px
                 new FormLayout.ResponsiveStep("500px", 2));
         // Stretch the username field over 2 columns
         formLayout.setColspan(orderGrid, 2);
 
         add(formLayout);
 
-        VerticalLayout debugLayout = new VerticalLayout();
-        debugLayout.setWidthFull();
-
-        DebugTool debugTool = new DebugTool();
-
-        ComboBox<String> texts = new ComboBox<>("Select a text or just type your own <br>in the debug Input Source field");
+        ComboBox<String> texts = new ComboBox<>();
+        texts.setPlaceholder("Select a text example...");
         texts.setItems("Text1", "Text2", "Text3");
-        texts.setValue("Text1");
         texts.setAllowCustomValue(false);
-        debugTool.getDebugInput().setValue(getExampleTexts().get("Text1"));
-        texts.addValueChangeListener(e -> {
-            debugTool.getDebugInput().setValue(getExampleTexts().get(texts.getValue()));
-        });
 
-        Button fillButton = new Button("Fill Form From Input Text");
+        TextArea inputText = new TextArea("Input Text", "Select a text or type your own...");
+        texts.addValueChangeListener(e ->
+                inputText.setValue(getExampleTexts().get(texts.getValue())));
+
+        Button fillButton = new Button("Fill the form");
         fillButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         fillButton.addClickListener(event -> {
-            debugTool.getDebugJsonTarget().setValue("");
-            debugTool.getDebugTypesTarget().setValue("");
-            debugTool.getDebugResponse().setValue("");
-            String input = debugTool.getDebugInput().getValue();
+            String input = inputText.getValue();
             if (input != null && !input.isEmpty()) {
-                HashMap<Component, String> fieldsInstructions = new HashMap<>();
-
-                for (Component c : extraInstructionsTool.getExtraInstructions().keySet()) {
-                    if (extraInstructionsTool.getExtraInstructions().get(c).getValue() != null && !extraInstructionsTool.getExtraInstructions().get(c).getValue().isEmpty())
-                        fieldsInstructions.put(c, extraInstructionsTool.getExtraInstructions().get(c).getValue());
-                }
-                ArrayList<String> contextInformation = new ArrayList<>();
-                for (TextField c : extraInstructionsTool.getContextInstructions()) {
-                    if (!c.getValue().isEmpty())
-                        contextInformation.add(c.getValue());
-                }
                 clearForm();
-                FormFiller formFiller = new FormFiller(formLayout, fieldsInstructions, contextInformation, new ChatGPTService());
+                FormFiller formFiller = new FormFiller(formLayout, new HashMap<>(), new ArrayList<>(), new ChatGPTService());
                 FormFillerResult result = formFiller.fill(input);
-                debugTool.getDebugPrompt().setValue(result.getRequest());
-                debugTool.getDebugJsonTarget().setValue(String.format("%s", formFiller.getMapping().componentsJSONMap()));
-                debugTool.getDebugTypesTarget().setValue(String.format("%s", formFiller.getMapping().componentsTypesJSONMap()));
-                debugTool.getDebugResponse().setValue(result.getResponse());
+                getLogger().debug("GPT request for input text: \n\n {}", result.getRequest());
+                getLogger().debug("GPT response for input text: \n\n {}", result.getResponse());
+            } else {
+                inputText.setErrorMessage("Input a text to fill the form.");
             }
         });
 
-        List<ComponentUtils.ComponentInfo> componentInfo = ComponentUtils.getComponentInfo(formLayout);
-        extraInstructionsTool.setComponents(componentInfo);
-        extraInstructionsTool.setVisible(false);
-        extraInstructionsTool.setExtraInstructions(nameField, "Format this field in Uppercase");
-        extraInstructionsTool.setExtraInstructions(emailField, "Format this field as a correct email");
-        extraInstructionsTool.setContextInstructions(0,"Translate item names to Spanish");
+        Button clearButton = new Button("Clear", click -> inputText.clear());
+        clearButton.setThemeName(ButtonVariant.LUMO_ERROR.getVariantName());
 
-        Button extraInstructionsButton = new Button("Show/Hide extra instructions");
-        extraInstructionsButton.addThemeVariants(ButtonVariant.LUMO_ERROR);
-        extraInstructionsButton.addClickListener(e -> {
-            extraInstructionsTool.setVisible(!extraInstructionsTool.isVisible());
+        Button addInstructionsButton = new Button("Add instructions...", click -> {
+
         });
 
-        HorizontalLayout imagesLayout = new HorizontalLayout(texts);
-        VerticalLayout documentLayout = new VerticalLayout(fillButton, extraInstructionsButton, extraInstructionsTool, imagesLayout);
-        debugLayout.add(documentLayout, debugTool);
-        add(debugLayout);
+        HorizontalLayout buttonLayout = new HorizontalLayout(clearButton, texts, addInstructionsButton, fillButton);
+
+        VerticalLayout inputLayout = new VerticalLayout();
+        inputText.setSizeFull();
+        inputLayout.add(buttonLayout);
+        inputLayout.add(inputText);
+
+        HorizontalLayout mainLayout = new HorizontalLayout();
+        mainLayout.setPadding(true);
+        mainLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+        mainLayout.add(inputLayout);
+        mainLayout.add(formLayout);
+
+        add(mainLayout);
 
     }
 
     private void clearForm() {
         formLayout.getChildren().forEach(component -> {
             if (component instanceof HasValue<?, ?>) {
-                ((HasValue) component).clear();
+                ((HasValue<?, ?>) component).clear();
             } else if (component instanceof Grid) {
-                ((Grid) component).setItems(new ArrayList<>());
+                ((Grid<?>) component).setItems(new ArrayList<>());
             }
         });
     }
@@ -319,4 +298,9 @@ public class FormFillerTextDemo extends VerticalLayout {
                 "was paid using a Paypal account. The taxes included in the invoice are 40,6€ and Total is 20000€");
         return texts;
     }
+
+    private static Logger getLogger() {
+        return LoggerFactory.getLogger(FormFillerTextDemo.class.getName());
+    }
+
 }
