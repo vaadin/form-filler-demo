@@ -22,6 +22,7 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.checkbox.CheckboxGroup;
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.combobox.MultiSelectComboBox;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.datetimepicker.DateTimePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -284,6 +285,11 @@ public class FormFillerTextDemo extends VerticalLayout {
         typeService.setItems("Software", "Hardware", "Consultancy");
         typeService.setId("typeService");
         formLayout.add(typeService);
+
+        MultiSelectComboBox<String> typeServiceMulti = new MultiSelectComboBox<>("Type of Service");
+        typeServiceMulti.setItems("Software", "Hardware", "Consultancy");
+        typeServiceMulti.setId("type");
+        formLayout.add(typeServiceMulti);
     }
 
     private static Logger getLogger() {
