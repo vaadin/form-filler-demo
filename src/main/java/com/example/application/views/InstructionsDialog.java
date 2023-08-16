@@ -16,9 +16,13 @@ public class InstructionsDialog extends Dialog {
 
     private String contextInstruction = "Translate item names to Spanish";
 
+    private String instructionsForTypeOfService = "This field describes the type of the items of the order";
+
     private TextField name;
 
     private EmailField email;
+
+    private TextField typeOfService;
 
     private TextField context;
 
@@ -33,13 +37,17 @@ public class InstructionsDialog extends Dialog {
         Button clearButton = new Button("Clear", e -> {
             name.setValue("");
             email.setValue("");
+            typeOfService.setValue("");
             context.setValue("");
         });
+        clearButton.setThemeName(ButtonVariant.LUMO_ERROR.getVariantName());
         getFooter().add(cancelButton);
         getFooter().add(clearButton);
         getFooter().add(saveButton);
 
         addOpenedChangeListener(e -> fillInstructions());
+
+        setWidth("600px");
     }
 
     public String getInstructionForName() {
@@ -54,12 +62,17 @@ public class InstructionsDialog extends Dialog {
         return contextInstruction;
     }
 
+    public String getInstructionsForTypeOfService() {
+        return instructionsForTypeOfService;
+    }
+
     private VerticalLayout createDialogLayout() {
         name = new TextField("Instruction for name");
         email = new EmailField("Instructions for e-mail");
+        typeOfService = new TextField("Instructions for Type Of Service");
         context = new TextField("Context instruction");
 
-        VerticalLayout dialogLayout = new VerticalLayout(name, email, context);
+        VerticalLayout dialogLayout = new VerticalLayout(name, email, typeOfService, context);
         dialogLayout.setPadding(false);
         dialogLayout.setSpacing(false);
         dialogLayout.setAlignItems(FlexComponent.Alignment.STRETCH);
@@ -70,6 +83,7 @@ public class InstructionsDialog extends Dialog {
     private void fillInstructions() {
         name.setValue(instructionForName);
         email.setValue(instructionForEmail);
+        typeOfService.setValue(instructionsForTypeOfService);
         context.setValue(contextInstruction);
     }
 
@@ -77,6 +91,7 @@ public class InstructionsDialog extends Dialog {
         Button saveButton = new Button("Save", click -> {
             instructionForName = name.getValue();
             instructionForEmail = email.getValue();
+            instructionsForTypeOfService = typeOfService.getValue();
             contextInstruction = context.getValue();
             close();
         });

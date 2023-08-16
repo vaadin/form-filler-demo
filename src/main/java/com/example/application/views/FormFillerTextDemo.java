@@ -52,6 +52,7 @@ public class FormFillerTextDemo extends VerticalLayout {
     private EmailField emailField;
     private FormLayout formLayout;
     private InstructionsDialog instructionsDialog;
+    private MultiSelectComboBox<String> typeServiceMulti;
 
     public FormFillerTextDemo() {
         setPadding(true);
@@ -140,6 +141,7 @@ public class FormFillerTextDemo extends VerticalLayout {
                 HashMap<Component, String> instructions = new HashMap<>();
                 instructions.put(nameField, instructionsDialog.getInstructionForName());
                 instructions.put(emailField, instructionsDialog.getInstructionForEmail());
+                instructions.put(typeServiceMulti, instructionsDialog.getInstructionsForTypeOfService());
 
                 ArrayList<String> contextInstructions = new ArrayList<>();
                 contextInstructions.add(instructionsDialog.getContextInstruction());
@@ -286,9 +288,9 @@ public class FormFillerTextDemo extends VerticalLayout {
         typeService.setId("typeService");
         formLayout.add(typeService);
 
-        MultiSelectComboBox<String> typeServiceMulti = new MultiSelectComboBox<>("Type of Service");
+        typeServiceMulti = new MultiSelectComboBox<>("Type of Service");
         typeServiceMulti.setItems("Software", "Hardware", "Consultancy");
-        typeServiceMulti.setId("type");
+        typeServiceMulti.setId("typeServiceMs");
         formLayout.add(typeServiceMulti);
     }
 
