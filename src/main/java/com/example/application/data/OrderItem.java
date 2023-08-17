@@ -42,8 +42,12 @@ public class OrderItem implements Serializable {
         this.orderCost = orderCost;
     }
 
-    public String getOrderId() { return orderId; }
+    public String getOrderId() {
+        return orderId;
+    }
 
-    public void setOrderId(String orderId) { this.orderId = orderId; }
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
 
 }
