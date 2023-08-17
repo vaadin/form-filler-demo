@@ -38,7 +38,7 @@ import java.util.HashMap;
 
 @PageTitle("Form Filler Demo")
 @Route("")
-public class FormFillerTextDemo extends Main {
+public class FormFillerTextView extends Main {
 
     private ComboBox<String> templates;
     private TextArea textArea;
@@ -48,7 +48,7 @@ public class FormFillerTextDemo extends Main {
     private InstructionsDialog instructionsDialog;
     private MultiSelectComboBox<String> typeServiceMulti;
 
-    public FormFillerTextDemo() {
+    public FormFillerTextView() {
         addClassNames(LumoUtility.Display.FLEX, LumoUtility.FlexDirection.COLUMN, LumoUtility.Padding.LARGE);
 
         H1 title = new H1("Form Filler Demo");
@@ -58,12 +58,12 @@ public class FormFillerTextDemo extends Main {
         add(title, instruction);
 
         Div mainLayout = new Div(createInputSection(), createFormSection());
-        mainLayout.addClassNames(LumoUtility.Display.FLEX, LumoUtility.Gap.LARGE);
+        mainLayout.addClassNames(LumoUtility.Display.FLEX, LumoUtility.Gap.XLARGE);
         add(mainLayout);
     }
 
     private static Logger getLogger() {
-        return LoggerFactory.getLogger(FormFillerTextDemo.class.getName());
+        return LoggerFactory.getLogger(FormFillerTextView.class.getName());
     }
 
     private Component createInputSection() {
@@ -249,7 +249,7 @@ public class FormFillerTextDemo extends Main {
         return grid;
     }
 
-    private void initGridEditor(Grid grid) {
+    private void initGridEditor(Grid<OrderItem> grid) {
         // Example of editor with FormFiller just as any regular editor of Flow Grid
         Editor<OrderItem> editor = grid.getEditor();
         Grid.Column<OrderItem> editColumn = grid.addComponentColumn(order -> {
