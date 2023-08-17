@@ -71,6 +71,7 @@ public class FormFillerTextView extends Main {
         title.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.Bottom.MEDIUM, LumoUtility.Margin.Top.LARGE);
 
         templates = new ComboBox<>();
+        templates.setId("text-combobox");
         templates.addClassNames(LumoUtility.Flex.GROW);
         templates.addValueChangeListener(e -> textArea.setValue(getExampleTexts().get(templates.getValue())));
         templates.setAllowCustomValue(false);
@@ -106,6 +107,7 @@ public class FormFillerTextView extends Main {
             }
         });
         fillButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        fillButton.setId("fill-form-button");
 
         Div toolbar = new Div(templates, instructionsButton, clearButton, fillButton);
         toolbar.addClassNames(LumoUtility.Display.FLEX, LumoUtility.Gap.SMALL);

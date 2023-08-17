@@ -14,7 +14,7 @@ public class InstructionsDialog extends Dialog {
 
     private String instructionForEmail = "Format this field as a correct email";
 
-    private String contextInstruction = "Translate item names to Spanish";
+    private String contextInstruction = "Translate item names to English";
 
     private String instructionsForTypeOfService = "This field describes the type of the items of the order";
 
