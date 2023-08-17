@@ -23,6 +23,19 @@
 
     <repositories>
         <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>vaadin-prereleases</id>
+            <url>
+                https://maven.vaadin.com/vaadin-prereleases/
+            </url>
+        </repository>
+        <repository>
             <id>Vaadin Directory</id>
             <url>https://maven.vaadin.com/vaadin-addons</url>
             <snapshots>
@@ -81,7 +94,7 @@
         <dependency>
             <groupId>com.vaadin.flow.ai</groupId>
             <artifactId>form-filler-addon</artifactId>
-            <version>0.1.0-SNAPSHOT</version>
+            <version>0.1.0.alpha0</version>
         </dependency>
     </dependencies>
 
