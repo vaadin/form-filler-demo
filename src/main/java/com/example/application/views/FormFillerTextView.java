@@ -77,9 +77,14 @@ public class FormFillerTextView extends Main {
         templates.setAllowCustomValue(false);
         templates.setAriaLabel("Templates");
         templates.setItems("Template 001", "Template 002", "Template 003");
-        templates.setPlaceholder("Select template");
+        templates.setTooltipText("Select a pre-defined raw text example that you want to fill in the form");
+        templates.setPlaceholder("Select template...");
 
         Button instructionsButton = new Button("Instructions", click -> instructionsDialog.open());
+        instructionsButton.setTooltipText(
+                "AI can be instructed with additional actions it needs to do, " +
+                "e.g. translating the values to another language or transforming them to upper case." +
+                "This can be an arbitrary text or particular words.");
         instructionsDialog = new InstructionsDialog();
 
         Button clearButton = new Button("Clear", click -> textArea.clear());
@@ -108,11 +113,13 @@ public class FormFillerTextView extends Main {
         });
         fillButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         fillButton.setId("fill-form-button");
+        fillButton.setTooltipText("Send input data to AI and fill the form");
 
         Div toolbar = new Div(templates, instructionsButton, clearButton, fillButton);
         toolbar.addClassNames(LumoUtility.Display.FLEX, LumoUtility.Gap.SMALL);
 
-        textArea = new TextArea("Input Text", "Select a text or type your own...");
+        textArea = new TextArea("Input Text", "Select a text template or type your own...");
+        textArea.setTooltipText("Add a text you want to fill into the form on the right side");
         textArea.setClearButtonVisible(true);
         textArea.setSizeFull();
 
