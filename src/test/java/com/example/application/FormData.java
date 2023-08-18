@@ -17,7 +17,7 @@ public class FormData {
     LocalDate dueDate = null;
     String orderEntity = "";
     Integer orderTotal = null;
-    String orderTaxes = "";
+    Double orderTaxes = null;
     String orderDescription = "";
     String paymentMethod = "";
     Boolean isFinnishCustomer = false;

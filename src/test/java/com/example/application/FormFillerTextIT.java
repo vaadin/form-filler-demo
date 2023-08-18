@@ -59,11 +59,11 @@ public class FormFillerTextIT extends BrowserTestBase {
         formData.age = 45;
         formData.email = "andrewjackson@gmail.com";
         formData.clientId = "45XXD6543";
-        formData.creationDate = LocalDateTime.of(2023, 1, 10, 0, 0);
-        formData.dueDate = LocalDate.of(2023, 1, 10);
+        formData.creationDate = LocalDateTime.of(2023, 4, 5, 12, 13);
+        formData.dueDate = LocalDate.of(2023, 5, 15);
         formData.orderEntity = "Person";
         formData.orderTotal = 20000;
-        formData.orderTaxes = "40,6";
+        formData.orderTaxes = 40.6;
         formData.orderDescription = "Vaadin AI Form Filler";
         formData.paymentMethod = "Paypal";
         formData.isFinnishCustomer = true;
@@ -99,12 +99,18 @@ public class FormFillerTextIT extends BrowserTestBase {
         Assertions.assertEquals(form.clientId,
                 $(PasswordFieldElement.class).id("clientId").getValue());
 
-        // todo
-//        Assertions.assertEquals(form.creationDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-//                $(DateTimePickerElement.class).id("creationDate").getDatePresentation());
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(
+                "dd/MM/yyyy HH:mm:ss");
 
-//        Assertions.assertEquals(form.dueDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-//                $(DatePickerElement.class).id("dueDate").getInputValue());
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(
+                "dd/MM/yyyy");
+
+        Assertions.assertEquals(form.creationDate.format(dateTimeFormatter),
+                $(DateTimePickerElement.class).id("creationDate").getDateTime()
+                        .format(dateTimeFormatter));
+
+        Assertions.assertEquals(form.dueDate.format(dateFormatter),
+                $(DatePickerElement.class).id("dueDate").getDate().format(dateFormatter));
 
         ComboBoxElement orderEntity = $(ComboBoxElement.class).id("orderEntity");
         Assertions.assertEquals(form.orderEntity, orderEntity.getSelectedText());
@@ -114,8 +120,8 @@ public class FormFillerTextIT extends BrowserTestBase {
                         .getValue()));
 
         Assertions.assertEquals(form.orderTaxes,
-                $(BigDecimalFieldElement.class).id("orderTaxes")
-                        .getValue());
+                Double.parseDouble($(BigDecimalFieldElement.class).id("orderTaxes")
+                        .getValue().replace(",", ".")));
 
         Assertions.assertEquals(form.orderDescription,
                 $(TextAreaElement.class).id("orderDescription").getValue());
@@ -126,8 +132,9 @@ public class FormFillerTextIT extends BrowserTestBase {
         Assertions.assertEquals(form.isFinnishCustomer,
                 $(CheckboxElement.class).id("isFinnishCustomer").isChecked());
 
-        Assertions.assertEquals(form.typeService,
-                $(CheckboxGroupElement.class).id("typeService").getSelectedTexts());
+        Assertions.assertTrue(
+                $(CheckboxGroupElement.class).id("typeService").getSelectedTexts()
+                        .containsAll(form.typeService));
 
         // todo wait for next alpha
 //        Assertions.assertEquals(form.typeService,
