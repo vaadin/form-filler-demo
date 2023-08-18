@@ -10,14 +10,13 @@ To run the application you will need a valid ChatGPT API key.
 You can get it by registering on [OpenAI website](https://platform.openai.com/overview).
 Choose 'Sign up' and follow the instructions.
 
-These keys can be set as environment variables or specified from command line with the '-D' flag.
+This key can be set as environment variable or specified from command line with the '-D' flag.
 
 - Macos: include on your .zprofile
 ```script
 export OPENAI_TOKEN="THE KEY"
-export GOOGLE_VISION_API_KEY="THE KEY"
 ```
-- Windows: Use "System -> Advanced Settings -> Set Environment Variables" to set OPENAI_TOKEN and GOOGLE_VISION_API_KEY
+- Windows: Use "System -> Advanced Settings -> Set Environment Variables" to set OPENAI_TOKEN
 
 The project is a standard Maven project. To run it from the command line, type `mvn` and open http://localhost:8080 in your browser.
 
