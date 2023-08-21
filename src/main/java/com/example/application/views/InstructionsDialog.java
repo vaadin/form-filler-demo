@@ -16,7 +16,7 @@ public class InstructionsDialog extends Dialog {
 
     private String contextInstruction = "Translate item names to English";
 
-    private String instructionsForTypeOfService = "This field describes the type of the items of the order";
+    private String instructionsForTypeOfService = "This field describes the type of the items of the order among hardware, software or consultancy options";
 
     private TextField name;
 
