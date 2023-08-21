@@ -201,7 +201,7 @@ public class FormFillerTextView extends Main {
         orderDescription.setId("orderDescription");
 
         RadioButtonGroup<String> paymentMethod = new RadioButtonGroup<>("Payment method");
-        paymentMethod.setItems("Credit card", "Cash", "Paypal");
+        paymentMethod.setItems("Credit Card", "Cash", "Paypal");
         paymentMethod.setId("paymentMethod");
 
         Checkbox isFinnishCustomer = new Checkbox("Finnish customer");
