@@ -40,7 +40,7 @@ jobs:
       run: |
          TOKEN=${{ secrets.OPENAI_TOKEN }}
          [ -z "$TOKEN" ] && echo "No OpenAI token provided" && exit 1
-         mvn -B verify -Pit --file pom.xml -DOPENAI_TOKEN="$TOKEN" -Dheadless
+         mvn -B verify -Pit --file pom.xml -DOPENAI_TOKEN="$TOKEN" -Dcom.vaadin.testbench.Parameters.headless=true
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
