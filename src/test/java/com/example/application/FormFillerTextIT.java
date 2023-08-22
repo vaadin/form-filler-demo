@@ -170,11 +170,11 @@ public class FormFillerTextIT extends BrowserTestBase {
         order2.setItemName("Laptop");
         order2.setOrderDate(LocalDate.of(2023, 2, 15));
         order2.setOrderId("1002");
-        order2.setOrderStatus("In transit");
+        order2.setOrderStatus("In Transit");
         order2.setOrderTotal(1500.0);
 
         OrderItem order3 = new OrderItem();
-        order3.setItemName("Wireless headphones");
+        order3.setItemName("Wireless Headphones");
         order3.setOrderDate(LocalDate.of(2023, 3, 20));
         order3.setOrderId("1003");
         order3.setOrderStatus("Cancelled");
@@ -184,7 +184,7 @@ public class FormFillerTextIT extends BrowserTestBase {
         order4.setItemName("Headphones");
         order4.setOrderDate(LocalDate.of(2023, 1, 1));
         order4.setOrderId("1004");
-        order4.setOrderStatus("In transit");
+        order4.setOrderStatus("In Transit");
         order4.setOrderTotal(999.0);
 
         return Arrays.asList(order1, order2, order3, order4);
