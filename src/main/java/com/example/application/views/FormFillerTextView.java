@@ -75,7 +75,7 @@ public class FormFillerTextView extends Main {
         templates.addClassNames(LumoUtility.Flex.GROW);
         templates.addValueChangeListener(e -> textArea.setValue(getExampleTexts().get(templates.getValue())));
         templates.setAllowCustomValue(false);
-        templates.setAriaLabel("Templates");
+        templates.getElement().setProperty("accessibleName", "Templates");
         templates.setItems("Template 001", "Template 002", "Template 003");
         templates.setTooltipText("Select a pre-defined raw text example that you want to fill in the form");
         templates.setPlaceholder("Select template...");
