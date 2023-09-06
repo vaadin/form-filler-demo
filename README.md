@@ -21,7 +21,7 @@ export OPENAI_TOKEN="THE KEY"
 ```
 - Windows: Use "System -> Advanced Settings -> Set Environment Variables" to set OPENAI_TOKEN
 
-The project is a standard Maven project. To run it from the command line, type `mvn` and open http://localhost:8080 in your browser.
+The project is a standard Maven project. To run it from the command line, type `mvnw` and open http://localhost:8080 in your browser.
 
 You can also import the project to your IDE of choice as you would with any
 Maven project. Read more on [how to set up a development environment for
@@ -43,7 +43,7 @@ You can play with the input text (remove parts, make a syntax mistakes) and see 
 
 Integration tests are implemented using [Vaadin TestBench](https://vaadin.com/testbench). The tests take a few minutes to run and are therefore included in a separate Maven profile. We recommend running tests with a production build to minimize the chance of development time toolchains affecting test stability. To run the tests using Google Chrome, execute
 
-`mvn verify -Pit,production`
+`mvnw verify -Pit,production`
 
 and make sure you have a valid TestBench license installed (you can obtain a trial license from the [trial page](https://vaadin.com/trial)).
 
