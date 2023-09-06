@@ -4,6 +4,9 @@ This project is a showcase example of using [Vaadin Form Filler add-on](https://
 and helps to automate a filling in the order information.
 Users can input their raw unstructured text and ask the application to auto-fill the form on the right side.
 
+Uses Form Filler 1.0 and based on Vaadin 24.2 pre-release.
+To use latest stable Vaadin 24.1 version, please use `24.1` branch.
+
 ## Running the Application
 
 To run the application you will need a valid ChatGPT API key.
