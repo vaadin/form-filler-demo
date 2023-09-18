@@ -3,8 +3,8 @@
 This project is a showcase example of using [Vaadin Form Filler add-on](https://github.com/vaadin/form-filler-addon) and helps to automate a filling in the order information.
 Users can input their raw unstructured text and ask the application to auto-fill the form on the right side.
 
-Uses Form Filler 1.0.0 and based on Vaadin 24.2+.
-To use latest stable Vaadin 24.1 version, please switch to `24.1` branch.
+`main` branch uses Form Filler 1.0.0 pre-release and based on Vaadin 24.2 pre-release.
+`24.1` branch uses latest stable Vaadin 24.1 version and Form filler 0.1.
 
 Please note that the Form Filler add-on is currently an experimental feature. 
 It may be removed, altered, or limited to commercial subscribers in future releases.
