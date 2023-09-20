@@ -24,6 +24,9 @@ export OPENAI_TOKEN="THE KEY"
 - Windows: Use "System -> Advanced Settings -> Set Environment Variables" to set OPENAI_TOKEN
 
 The project is a standard Maven project. To run it from the command line, type `mvnw` and open http://localhost:8080 in your browser.
+To run the `mvnw` command, you may need to specify it differently depending on your operating system:
+- Windows: Use `mvnw` directly in your command prompt.
+- macOS/Unix: You may need to prepend `./` to the command, like this: `./mvnw`.
 
 You can also import the project to your IDE of choice as you would with any
 Maven project. Read more on [how to set up a development environment for
