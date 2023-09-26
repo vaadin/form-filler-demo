@@ -187,6 +187,11 @@
                     <plugin>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <OPENAI_TOKEN>${OPENAI_TOKEN}</OPENAI_TOKEN>
+                            </systemPropertyVariables>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>start-spring-boot</id>
