@@ -15,15 +15,19 @@ To run the application you will need a valid ChatGPT API key.
 You can get it by registering on [OpenAI website](https://platform.openai.com/overview).
 Choose 'Sign up' and follow the instructions.
 
-This key can be set as environment variable or specified from command line with the '-D' flag.
+This key can be set as system property with '-D' flag or as an environment variable:
 
-- Macos: include on your .zprofile
-```script
-export OPENAI_TOKEN="THE KEY"
-```
-- Windows: Use "System -> Advanced Settings -> Set Environment Variables" to set OPENAI_TOKEN
+- System property: add `-DOPENAI_TOKEN=your_key` to your command in console.
+- Environment variable:
+   - Macos: include on your .zprofile
+   ```script
+   export OPENAI_TOKEN="THE KEY"
+   ```
+   - Windows: Use "System -> Advanced Settings -> Set Environment Variables" to set OPENAI_TOKEN
 
 The project is a standard Maven project. To run it from the command line, type `mvnw` (Windows) or `./mvnw` (macOs/Unix) and open http://localhost:8080 in your browser.
+With a system property it would be `mvnw -DOPENAI_TOKEN=your_key` (Windows) or `./mvnw -DOPENAI_TOKEN=your_key` (macOs/Unix).
+This will run the project in [development mode](https://vaadin.com/docs/latest/configuration/development-mode).
 
 You can also import the project to your IDE of choice as you would with any
 Maven project. Read more on [how to set up a development environment for
@@ -40,6 +44,11 @@ It might take a few seconds until AI responses back, you would see the loading i
 Finally, you shall see the values in the form fields and also orders list on the bottom of the page.
 
 You can play with the input text (remove parts, make a syntax mistakes) and see how AI will interpret them.
+
+### Running in production mode
+To run the application in [production mode](https://vaadin.com/docs/latest/production), you need:
+- build the jar with `mvnw clean package -Pproduction` (Windows) or `./mvnw clean package -Production` (macOs/Unix)
+- run jar with `java -DOPENAI_TOKEN=your_key -jar target/formfillerdemo-1.0-SNAPSHOT.jar`
 
 ### Running Integration Tests
 
