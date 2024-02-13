@@ -58,7 +58,7 @@ public class FormFillerTextIT extends BrowserTestBase {
         formData.age = 45;
         formData.email = "andrewjackson@gmail.com";
         formData.clientId = "45XXD6543";
-        formData.creationDate = LocalDate.of(2023, 3, 20);
+        formData.creationDate = LocalDateTime.of(2023, 4, 5, 12, 13);
         formData.dueDate = LocalDate.of(2023, 5, 15);
         formData.orderEntity = "Person";
         formData.orderTotal = 20000;

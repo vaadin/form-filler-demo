@@ -12,7 +12,7 @@ public class FormData {
     Integer age = null;
     String email = "";
     String clientId = "";
-    LocalDate creationDate = null;
+    LocalDateTime creationDate = null;
     LocalDate dueDate = null;
     String orderEntity = "";
     Integer orderTotal = null;
