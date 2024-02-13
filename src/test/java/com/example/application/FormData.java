@@ -3,7 +3,6 @@ package com.example.application;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class FormData {
@@ -13,7 +12,7 @@ public class FormData {
     Integer age = null;
     String email = "";
     String clientId = "";
-    LocalDateTime creationDate = null;
+    LocalDate creationDate = null;
     LocalDate dueDate = null;
     String orderEntity = "";
     Integer orderTotal = null;
