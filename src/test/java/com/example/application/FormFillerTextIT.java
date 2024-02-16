@@ -173,7 +173,7 @@ public class FormFillerTextIT extends BrowserTestBase {
         order2.setOrderTotal(1500.0);
 
         OrderItem order3 = new OrderItem();
-        order3.setItemName("Wireless Headphones");
+        order3.setItemName("Wireless headphones");
         order3.setOrderDate(LocalDate.of(2023, 3, 20));
         order3.setOrderId("1003");
         order3.setOrderStatus("Cancelled");
