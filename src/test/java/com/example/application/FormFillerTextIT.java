@@ -15,7 +15,6 @@ import com.vaadin.flow.component.button.testbench.ButtonElement;
 import com.vaadin.flow.component.checkbox.testbench.CheckboxElement;
 import com.vaadin.flow.component.checkbox.testbench.CheckboxGroupElement;
 import com.vaadin.flow.component.combobox.testbench.ComboBoxElement;
-import com.vaadin.flow.component.combobox.testbench.MultiSelectComboBoxElement;
 import com.vaadin.flow.component.datepicker.testbench.DatePickerElement;
 import com.vaadin.flow.component.datetimepicker.testbench.DateTimePickerElement;
 import com.vaadin.flow.component.grid.testbench.GridElement;
@@ -64,7 +63,7 @@ public class FormFillerTextIT extends BrowserTestBase {
         formData.orderEntity = "Person";
         formData.orderTotal = 20000;
         formData.orderTaxes = 40.6;
-        formData.orderDescription = "Vaadin AI Form Filler";
+        formData.orderDescription = "This is an invoice of an order for the project 'Vaadin AI Form Filler' providing some hardware";
         formData.paymentMethod = "Paypal";
         formData.isFinnishCustomer = true;
         formData.typeService.add("Hardware");
@@ -170,11 +169,11 @@ public class FormFillerTextIT extends BrowserTestBase {
         order2.setItemName("Laptop");
         order2.setOrderDate(LocalDate.of(2023, 2, 15));
         order2.setOrderId("1002");
-        order2.setOrderStatus("In Transit");
+        order2.setOrderStatus("In transit");
         order2.setOrderTotal(1500.0);
 
         OrderItem order3 = new OrderItem();
-        order3.setItemName("Wireless Headphones");
+        order3.setItemName("Wireless headphones");
         order3.setOrderDate(LocalDate.of(2023, 3, 20));
         order3.setOrderId("1003");
         order3.setOrderStatus("Cancelled");
@@ -184,7 +183,7 @@ public class FormFillerTextIT extends BrowserTestBase {
         order4.setItemName("Headphones");
         order4.setOrderDate(LocalDate.of(2023, 1, 1));
         order4.setOrderId("1004");
-        order4.setOrderStatus("In Transit");
+        order4.setOrderStatus("In transit");
         order4.setOrderTotal(999.0);
 
         return Arrays.asList(order1, order2, order3, order4);
