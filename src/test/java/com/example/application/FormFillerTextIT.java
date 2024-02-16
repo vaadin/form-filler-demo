@@ -169,7 +169,7 @@ public class FormFillerTextIT extends BrowserTestBase {
         order2.setItemName("Laptop");
         order2.setOrderDate(LocalDate.of(2023, 2, 15));
         order2.setOrderId("1002");
-        order2.setOrderStatus("In Transit");
+        order2.setOrderStatus("In transit");
         order2.setOrderTotal(1500.0);
 
         OrderItem order3 = new OrderItem();
