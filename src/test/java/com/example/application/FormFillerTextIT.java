@@ -183,7 +183,7 @@ public class FormFillerTextIT extends BrowserTestBase {
         order4.setItemName("Headphones");
         order4.setOrderDate(LocalDate.of(2023, 1, 1));
         order4.setOrderId("1004");
-        order4.setOrderStatus("In Transit");
+        order4.setOrderStatus("In transit");
         order4.setOrderTotal(999.0);
 
         return Arrays.asList(order1, order2, order3, order4);
