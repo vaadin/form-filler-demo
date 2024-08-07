@@ -11,7 +11,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <vaadin.version>24.4.7</vaadin.version>
+        <vaadin.version>24.4.8</vaadin.version>
         <OPENAI_TOKEN></OPENAI_TOKEN>
     </properties>
 
