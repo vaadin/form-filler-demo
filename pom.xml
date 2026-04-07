@@ -112,6 +112,13 @@
             <artifactId>form-filler-addon</artifactId>
             <version>1.1.0</version>
         </dependency>
+        <!-- Override openai-gpt3-java version to fix Jackson 2.21 compatibility
+             (0.16.0 uses removed PropertyNamingStrategy.SNAKE_CASE field) -->
+        <dependency>
+            <groupId>com.theokanning.openai-gpt3-java</groupId>
+            <artifactId>service</artifactId>
+            <version>0.18.2</version>
+        </dependency>
     </dependencies>
 
     <build>
