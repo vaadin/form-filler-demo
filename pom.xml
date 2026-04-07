@@ -11,14 +11,17 @@
 
     <properties>
         <java.version>17</java.version>
-        <vaadin.version>24.10.0</vaadin.version>
+        <vaadin.version>24.10.1</vaadin.version>
+        <!-- Pin Jackson to 2.19.x; openai-gpt3-java:0.16.0 uses the removed
+             PropertyNamingStrategy.SNAKE_CASE field (dropped in Jackson 2.20) -->
+        <jackson-bom.version>2.19.2</jackson-bom.version>
         <OPENAI_TOKEN></OPENAI_TOKEN>
     </properties>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.11</version>
+        <version>3.5.13</version>
     </parent>
 
     <repositories>
