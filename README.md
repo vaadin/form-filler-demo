@@ -1,3 +1,5 @@
+⚠️ Starting from Vaadin 25, form-filler experimental addon is not supported anymore. Please use any other AI solutions for parsing images and filling your forms.
+
 # Vaadin Form Filler demo project 
 
 This project is a showcase example of using [Vaadin Form Filler add-on](https://github.com/vaadin/form-filler-addon) and helps to automate a filling in the order information.
